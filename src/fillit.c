@@ -14,7 +14,6 @@ int	main(int argc, char **argv)
 		ft_putendl("usage: missing arg");
 		return(1);
 	}
-
 	str_tetri = (char **)malloc(sizeof(char *) * 26);
 	if (read_file(argv[1], str_tetri, &tetri_list.size) == -1)
 	{

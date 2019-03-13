@@ -3,7 +3,7 @@
 
 #include "read_file.h"
 #include "tetrimino.h"
-#include "solve.h"
+#include "ft_solve.h"
 
 void	fillit(char *filename);
 
