@@ -18,6 +18,8 @@ typedef struct 	TetriminoList
 	int size;
 }				TetriminoList;
 
+int		xShift(Tetrimino *dest);
+int		LenShape(Tetrimino *dest);
 void 	cpyBlock(Tetrimino *dest, char tempo[4][4]);
 void	addBlock(char *src, Tetrimino *dest);
 char	*fillList(TetriminoList *tetri_list, char **str_tetri);

@@ -6,7 +6,7 @@
 #include "tetrimino.h"
 #include "../libft/libft.h"
 
-int		checkFreePos(char **grid, int position, int size);
+int		checkFreePos(Tetrimino *tetrimino, char **grid, int pos, int size);
 char	**createGrid(int size);
 void	solve(TetriminoList *tetri_list);
 void	displayGrid(char **grid);

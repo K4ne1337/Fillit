@@ -88,6 +88,36 @@ char	*fillList(TetriminoList *tetri_list, char **str_tetri)
 	}
 }
 
+int	xShift(Tetrimino *dest)
+{
+	int	x;
+
+	x = 0;
+	while(dest->block[x][0] == '.')
+	{
+		x++;
+	}
+	return (x);
+}
+
+int	LenShape(Tetrimino *dest)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = xShift(dest);
+	while(dest->block[i][j])
+	{
+		if(dest->block[i][j] == '#')
+			k++;
+		j++;
+	}
+	return(k/2);
+}
+
 void	blockUp(char block[4][4])
 { 
 	int y;

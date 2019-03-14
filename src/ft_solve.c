@@ -1,31 +1,45 @@
 #include "ft_solve.h"
 
-int	checkFreePos(char **grid, int position, int size)
+/*int	checkSizeSquare(TTetriminoList *tetri_list, int size)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while(size*size < LenShape(&tetri_list->list[0])
+	{
+		free(grid);
+		size++;
+		grid = createGrid(size);
+	}
+}*/
+
+int	checkFreePos(Tetrimino *tetrimino, char **grid, int pos, int size)
 {
 	int x;
 	int y;
 	int i;
 	int j;
-	int	res;
+	int res;
 
-	x = position / size;
-	y = position % size;
+	x = pos / size;
+	y = pos % size;
 	i = 0;
 	res = 0;
-	while(i < 4)
+	while(i < size)
 	{
 		j = 0;
-		while(j < 4)
+		while(j < size)
 		{
-			if(grid[x + i][y + j] >= 'A' && grid[x + i][y + j] <= 'Z')
-				res++;
+			if((grid[x + i][y + j] >= 'A' && grid[x + i][y + j] <= 'Z') && tetrimino->block[i][j] != '.')
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	if(res != 4)
-		return (0);
-	return (1);
+
+	return (0);
 }
 
 
@@ -103,19 +117,21 @@ void	solve(TetriminoList *tetri_list)
 	int		pos;
 	char	**grid;
 
-	size = 4;
-	i = 0;
+	size = 2;
 	pos = 0;
+	i = 0;
+	while((size) < LenShape(&tetri_list->list[0]))
+		size++;
 	grid = createGrid(size);
 	while(i < tetri_list->size)
 	{
-		if(checkFreePos(grid, pos, size) == 0)
+		if(checkFreePos(&tetri_list->list[i], grid, pos, size) == 0)
 		{
 			placeBlockOnGrid(&tetri_list->list[i], pos, grid, i, size);
 			i++;
 		}
 		else
-			pos = pos + 1;
+			pos++;
 	}
-		displayGrid(grid);
+	displayGrid(grid);
 }
