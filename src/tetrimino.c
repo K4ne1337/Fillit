@@ -63,7 +63,7 @@ void cpyBlock(Tetrimino *dest, char tempo[4][4])
 	}
 }
 
-char	*fillList(TetriminoList *tetri_list, char **str_tetri)
+void	fillList(TetriminoList *tetri_list, char **str_tetri)
 {
 	int	i;
 	char id;
@@ -76,11 +76,8 @@ char	*fillList(TetriminoList *tetri_list, char **str_tetri)
 		addBlock(str_tetri[i], &tetri_list->list[i]);
 		tetri_list->list[i].id = id;
 		cpyBlock(&tetri_list->list[i], tempo);
-		//eraseBlock(&tetri_list->list[i]);
 		blockLeft(tempo);
 		blockUp(tempo);
-		//blockReplaceC(tempo);
-		//blockReplaceL(tempo);
 		returnBlock(tempo, &tetri_list->list[i]);
 		++i;
 		id++;

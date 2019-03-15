@@ -22,7 +22,7 @@ int		xShift(Tetrimino *dest);
 int		LenShape(Tetrimino *dest);
 void 	cpyBlock(Tetrimino *dest, char tempo[4][4]);
 void	addBlock(char *src, Tetrimino *dest);
-char	*fillList(TetriminoList *tetri_list, char **str_tetri);
+void	fillList(TetriminoList *tetri_list, char **str_tetri);
 void	blockUp(char block[4][4]);
 void	blockLeft(char block[4][4]);
 void	displayTetrimino(Tetrimino *dest);
