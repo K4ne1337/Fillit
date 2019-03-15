@@ -15,12 +15,12 @@ void	addBlock(char *src, Tetrimino *dest)
 		if(src[i] != '\n')
 		{ 
 			dest->block[x][y] = src[i];
-			y++;
+			x++;
 		}
 		else
 		{
-			x++;
-			y = 0;
+			y++;
+			x = 0;
 		}
 		i++;
 	}
@@ -55,7 +55,7 @@ void cpyBlock(Tetrimino *dest, char tempo[4][4])
 	{
 		while(j < 4)
 		{
-			tempo[i][j] = dest->block[i][j];
+			tempo[j][i] = dest->block[j][i];
 			j++;
 		}
 		j = 0;
@@ -76,49 +76,18 @@ char	*fillList(TetriminoList *tetri_list, char **str_tetri)
 		addBlock(str_tetri[i], &tetri_list->list[i]);
 		tetri_list->list[i].id = id;
 		cpyBlock(&tetri_list->list[i], tempo);
-		eraseBlock(&tetri_list->list[i]);
-		blockUp(tempo);
+		//eraseBlock(&tetri_list->list[i]);
 		blockLeft(tempo);
+		blockUp(tempo);
 		//blockReplaceC(tempo);
 		//blockReplaceL(tempo);
 		returnBlock(tempo, &tetri_list->list[i]);
-		//displayTetrimino(&tetri_list->list[i]);
 		++i;
 		id++;
 	}
 }
 
-int	xShift(Tetrimino *dest)
-{
-	int	x;
-
-	x = 0;
-	while(dest->block[x][0] == '.')
-	{
-		x++;
-	}
-	return (x);
-}
-
-int	LenShape(Tetrimino *dest)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = xShift(dest);
-	while(dest->block[i][j])
-	{
-		if(dest->block[i][j] == '#')
-			k++;
-		j++;
-	}
-	return(k/2);
-}
-
-void	blockUp(char block[4][4])
+void	blockLeft(char block[4][4])
 { 
 	int y;
 	int n;
@@ -143,7 +112,7 @@ void	blockUp(char block[4][4])
 	}
 	if(block[0][y] != '#' && block[0][y+1] != '#' && block[0][y+2] != '#' && 
 		block[0][y+3] != '#')
-		blockUp(block);
+		blockLeft(block);
 }
 
 void	blockReplaceC(char block[4][4])
@@ -169,7 +138,7 @@ void	blockReplaceC(char block[4][4])
 	}
 }
 
-void	blockLeft(char block[4][4])
+void	blockUp(char block[4][4])
 { 
 	int y;
 	int n;
@@ -194,7 +163,7 @@ void	blockLeft(char block[4][4])
 	}
 	if(block[x][0] != '#' && block[x+1][0] != '#' && block[x+2][0] != '#' && 
 		block[x+3][0] != '#')
-		blockLeft(block);
+		blockUp(block);
 }
 
 void	blockReplaceL(char block[4][4])
@@ -231,7 +200,7 @@ void	returnBlock(char block[4][4], Tetrimino *dest)
 	{
 		while(y < 4)
 		{
-			dest->block[x][y] = block[x][y];
+			dest->block[y][x] = block[y][x];
 			y++;
 		}
 		y = 0;
@@ -243,9 +212,9 @@ void	displayTetrimino(Tetrimino *dest)
 {
 	int x = 0;
 	int y = 0;
-	while(x < 4)
+	while(y < 4)
 	{
-		while(y < 4)
+		while(x < 4)
 		{
 			if(dest->block[x][y] == '#')
 				ft_putchar(dest->id);
@@ -253,11 +222,11 @@ void	displayTetrimino(Tetrimino *dest)
 			{
 				ft_putchar(dest->block[x][y]);
 			}
-			y++;
+			x++;
 		}
 		ft_putendl("");
-		y = 0;
-		x++;
+		x = 0;
+		y++;
 	}
 	ft_putendl("");
 }

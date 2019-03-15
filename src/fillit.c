@@ -23,9 +23,7 @@ int	main(int argc, char **argv)
 	tetri_list.list = (Tetrimino *)malloc(sizeof(Tetrimino) * tetri_list.size);
 	fillList(&tetri_list, str_tetri);
 	solve(&tetri_list);
-	//printf("%d\n", tetri_counter);
-	//for(int i = 0; i < tetri_counter; ++i)
-		//printf("\n%s", str_tetri[i]);
-
+	free(str_tetri);
+	free(tetri_list.list);
 	return (0);
 }
