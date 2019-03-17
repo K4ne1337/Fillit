@@ -13,5 +13,4 @@ void	solve(TetriminoList *tetri_list);
 void	displayGrid(char **grid, int size);
 void	placeBlockOnGrid(Tetrimino *tetrimino, int position, char **grid, int size, int mode);
 
-
 #endif
