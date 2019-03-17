@@ -22,9 +22,9 @@ int	checkIfBlockFits(Tetrimino *tetrimino, char **grid, int pos, int size)
 				else if(grid[x + j][y + i] != '.')
 					return 1;
 			}
-			j++;
+			++j;
 		}
-		i++;
+		++i;
 	}
 	return (0);
 }
@@ -50,9 +50,9 @@ int	findFreePos(TetriminoList *tetri_list, int index, char **grid, int size)
 				else
 					return (0);
 			}
-			j++;
+			++j;
 		}
-		i++;
+		++i;
 	}
 	return (-1);
 }
@@ -102,10 +102,10 @@ char	**createGrid(int size)
 		while(j < size)
 		{
 			ret[i][j] = '.';
-			j++;
+			++j;
 		}
 		ret[i][j] = '\0';
-		i++;
+		++i;
 	}
 	return (ret);
 }
@@ -124,10 +124,10 @@ void	displayGrid(char **grid, int size)
 		while(x < size)
 		{
 			ft_putchar(grid[x][y]);
-			x++;
+			++x;
 		}
 		ft_putchar('\n');
-		y++;
+		++y;
 	}
 }
 
@@ -135,8 +135,12 @@ void	solve(TetriminoList *tetri_list)
 {
 	int		size;
 	char	**grid;
+	int		sqr;
 
-	size = 2;
+	sqr = 0;
+	while(sqr *  sqr < (tetri_list->size * 4))
+			sqr++;
+	size = sqr;
 	grid = createGrid(size);
 	while(findFreePos(tetri_list, 0, grid, size) == -1)
 	{

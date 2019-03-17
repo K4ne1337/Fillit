@@ -23,7 +23,7 @@ int		read_file(char *filename, char **str_tetri, int *tetri_counter)
 		if(verify_block(str_tetri[*tetri_counter]) == -1)
 			return (-1);
 		(*tetri_counter)++;
-		if(*tetri_counter > 25)
+		if(*tetri_counter > 26)
 			return (-1);
 	}
 	return (ret);
