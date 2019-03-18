@@ -6,23 +6,17 @@
 /*   By: abelkhay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:38:37 by abelkhay          #+#    #+#             */
-/*   Updated: 2019/03/18 15:40:37 by abelkhay         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:58:39 by amarcel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _FT_SOLVE_H_
-# define _FT_SOLVE_H_
+#	ifndef BLOCK_H
+#	define BLOCK_H
 
-# include <stdio.h>
+#include "tetrimino.h"
 
-# include "tetrimino.h"
-# include "../libft/libft.h"
+void	placeblock(t_tetrimino *tetrimino, int position, char **grid, int size);
+void	removeblock(t_tetrimino *tetrimino, int position, char **grid, int size);
+int		checkblock(t_tetrimino *tetrimino, char **grid, int pos, int size);
 
-int		findFreePos(TetriminoList *tetri_list, int index, char **grid, int size);
-int		checkFreePos(Tetrimino *tetrimino, char **grid, int pos, int size);
-char	**createGrid(int size);
-void	solve(TetriminoList *tetri_list);
-void	displayGrid(char **grid, int size);
-void	placeBlockOnGrid(Tetrimino *tetrimino, int position, char **grid, int size, int mode);
-
-#endif
+#	endif
