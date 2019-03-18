@@ -1,22 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/12 14:28:42 by amarcel           #+#    #+#             */
+/*   Updated: 2018/11/17 14:12:36 by amarcel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strncat(char *dest, const char *src, size_t n)
 {
+	size_t len;
 	size_t i;
-	size_t y;
 
+	len = ft_strlen(dest);
 	i = 0;
-	y = 0;
-	while (dest[i] != '\0')
+	while (i < n && src[i])
 	{
+		dest[len + i] = src[i];
 		i++;
 	}
-	while (src[y] != '\0' && y < n)
-	{
-		dest[i] = src[y];
-		i++;
-		y++;
-	}
-	dest[i] = '\0';
+	dest[len + i] = '\0';
 	return (dest);
 }

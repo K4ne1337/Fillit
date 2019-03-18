@@ -1,51 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarcel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/19 11:56:13 by amarcel           #+#    #+#             */
+/*   Updated: 2018/11/21 10:56:53 by amarcel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char	*ft_cpyitoa(char *str, long int len, long int nb, int neg)
+static char	*ft_cpyitoa(char *strint, long int len, long int n2, int neg)
 {
 	int i;
 
 	i = 0;
 	if (neg == 1)
 	{
-		str[i] = '-';
+		strint[i] = '-';
 		i++;
 	}
 	while (len >= 1)
 	{
-		str[i] = (nb / len) + '0';
-		nb = nb % len;
+		strint[i] = (n2 / len) + '0';
+		n2 = n2 % len;
 		len = len / 10;
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	strint[i] = '\0';
+	return (strint);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	int			i;
-	long int	nb;
-	char		*str;
+	long int	n2;
+	char		*strint;
 	int			neg;
 	long int	len;
 
 	i = 0;
-	nb = n;
+	n2 = n;
 	neg = 0;
 	len = 1;
-	if (nb < 0)
+	if (n2 < 0)
 	{
 		neg = 1;
-		nb = nb * -1;
+		n2 = n2 * -1;
 	}
-	while (nb / len >= 10)
+	while (n2 / len >= 10)
 	{
-			i++;
+		i++;
 		len = len * 10;
 	}
-	str = (char *)malloc(sizeof(char) * i + neg + 2);
-	if (!str)
+	strint = (char *)malloc(sizeof(char) * i + neg + 2);
+	if (!strint)
 		return (NULL);
-	str = ft_cpyitoa(str, len, nb, neg);
-	return (str);
+	strint = ft_cpyitoa(strint, len, n2, neg);
+	return (strint);
 }
