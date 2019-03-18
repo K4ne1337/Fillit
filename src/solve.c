@@ -6,7 +6,7 @@
 /*   By: abelkhay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:38:30 by abelkhay          #+#    #+#             */
-/*   Updated: 2019/03/18 15:38:32 by abelkhay         ###   ########.fr       */
+/*   Updated: 2019/03/18 19:15:05 by abelkhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ char	**creategrid(int size)
 	char	**ret;
 
 	i = 0;
-	ret = (char **)malloc(sizeof(char *) * size + 1);
+	if (!(ret = (char **)malloc(sizeof(char *) * size + 1)))
+		ft_error();
 	while (i < size)
 	{
-		ret[i] = (char *)malloc(sizeof(char) * size);
+		if (!(ret[i] = (char *)malloc(sizeof(char) * size)))
+			ft_error();
 		j = 0;
 		while (j < size)
 		{
@@ -97,10 +99,23 @@ void	solve(t_tetriminolist *tetri_list)
 	grid = creategrid(size);
 	while (findfreepos(tetri_list, 0, grid, size) == -1)
 	{
-		free(grid);
+		freegrid(grid);
 		size++;
 		grid = creategrid(size);
 	}
 	displaygrid(grid, size);
+	freegrid(grid);
+}
+
+void	freegrid(char **grid)
+{
+	int i;
+
+	i = 0;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
 	free(grid);
 }
