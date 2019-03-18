@@ -12,7 +12,7 @@
 
 #include "solve.h"
 
-int		findfreepos(t_tetriminolist *tetri_list, int index, char **grid, int size)
+int		findfreepos(t_tetriminolist *tlist, int index, char **grid, int size)
 {
 	int i;
 	int j;
@@ -23,15 +23,15 @@ int		findfreepos(t_tetriminolist *tetri_list, int index, char **grid, int size)
 		j = -1;
 		while (++j < size)
 		{
-			if (checkblock(&tetri_list->list[index], grid,\
+			if (checkblock(&tlist->list[index], grid,\
 			(i * size + j), size) == 0)
 			{
-				placeblock(&tetri_list->list[index],\
+				placeblock(&tlist->list[index],\
 				i * size + j, grid, size);
-				if (index + 1 == tetri_list->size)
+				if (index + 1 == tlist->size)
 					return (0);
-				if (findfreepos(tetri_list, index + 1, grid, size) == -1)
-					removeblock(&tetri_list->list[index],\
+				if (findfreepos(tlist, index + 1, grid, size) == -1)
+					removeblock(&tlist->list[index],\
 					i * size + j, grid, size);
 				else
 					return (0);
