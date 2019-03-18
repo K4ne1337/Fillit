@@ -6,7 +6,7 @@
 /*   By: abelkhay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:39:13 by abelkhay          #+#    #+#             */
-/*   Updated: 2019/03/18 15:39:15 by abelkhay         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:20:54 by abelkhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	verify_block(char buf[22])
 	countend = 0;
 	while (buf[i])
 	{
-		if ((buf[i] == '#') && (countdiez == 3 || buf[i + 1] == '#' || buf[i + 3] == '#' || buf[i + 4] == '#' || buf[i + 5] == '#'))
+		if ((buf[i] == '#') && (countdiez == 3 || buf[i + 1] == '#' ||\
+			buf[i + 3] == '#' || buf[i + 4] == '#' || buf[i + 5] == '#'))
 			countdiez++;
 		if (buf[i] == '.')
 			countdot++;
