@@ -6,7 +6,7 @@
 /*   By: abelkhay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:38:37 by abelkhay          #+#    #+#             */
-/*   Updated: 2019/03/18 19:16:03 by abelkhay         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:38:47 by abelkhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		checkfreepos(t_tetrimino *tetrimino, char **grid, int pos, int size);
 char	**creategrid(int size);
 void	solve(t_tetriminolist *tetri_list);
 void	displaygrid(char **grid, int size);
-void	freegrid(char **grid);
+void	freegrid(char **grid, int size);
 
 #	endif

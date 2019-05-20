@@ -1,7 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amarcel <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/05/17 23:43:02 by amarcel           #+#    #+#              #
+#    Updated: 2019/05/17 23:43:06 by amarcel          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME= fillit
 
 SRC= ./src/*.c
-OBJ= *.o
+OBJ= ./*.o
 
 CC= gcc
 CFLAGS= -Wall -Wextra -Werror
@@ -9,7 +21,7 @@ CFLAGS= -Wall -Wextra -Werror
 LIBFT= ./libft/libft.a
 LIBINC= -I libft/
 
-$(NAME):
+$(NAME): $(SRC)
 		make -C ./libft/
 		$(CC) -c $(CFLAGS) $(SRC) $(LIBINC)
 		$(CC) -o $(NAME) $(OBJ) $(LIBFT)
@@ -25,3 +37,5 @@ fclean: clean
 		/bin/rm -rf ./libft/libft.a
 
 re: fclean all
+
+.PHONY: all, clean, fclean, re

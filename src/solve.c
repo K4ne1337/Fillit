@@ -6,7 +6,7 @@
 /*   By: abelkhay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:38:30 by abelkhay          #+#    #+#             */
-/*   Updated: 2019/03/18 19:15:05 by abelkhay         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:32:43 by abelkhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int		findfreepos(t_tetriminolist *tlist, int index, char **grid, int size)
 		j = -1;
 		while (++j < size)
 		{
-			if (checkblock(&tlist->list[index], grid,\
-			(i * size + j), size) == 0)
+			if (checkblock(&tlist->list[index], grid\
+			, (i * size + j), size) == 0)
 			{
-				placeblock(&tlist->list[index],\
-				i * size + j, grid, size);
+				placeblock(&tlist->list[index]\
+				, i * size + j, grid, size);
 				if (index + 1 == tlist->size)
 					return (0);
 				if (findfreepos(tlist, index + 1, grid, size) == -1)
-					removeblock(&tlist->list[index],\
-					i * size + j, grid, size);
+					removeblock(&tlist->list[index]\
+					, i * size + j, grid, size);
 				else
 					return (0);
 			}
@@ -60,7 +60,6 @@ char	**creategrid(int size)
 			ret[i][j] = '.';
 			++j;
 		}
-		ret[i][j] = '\0';
 		++i;
 	}
 	return (ret);
@@ -99,20 +98,20 @@ void	solve(t_tetriminolist *tetri_list)
 	grid = creategrid(size);
 	while (findfreepos(tetri_list, 0, grid, size) == -1)
 	{
-		freegrid(grid);
+		freegrid(grid, size);
 		size++;
 		grid = creategrid(size);
 	}
 	displaygrid(grid, size);
-	freegrid(grid);
+	freegrid(grid, size);
 }
 
-void	freegrid(char **grid)
+void	freegrid(char **grid, int size)
 {
 	int i;
 
 	i = 0;
-	while (grid[i])
+	while (i < size)
 	{
 		free(grid[i]);
 		i++;
